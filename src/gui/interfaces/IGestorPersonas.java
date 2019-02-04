@@ -5,9 +5,10 @@
  */
 package gui.interfaces;
 
-import gui.personas.modelos.Alumno;
-import gui.personas.modelos.Cargo;
-import gui.personas.modelos.Profesor;
+import gui.persona.modelos.Alumno;
+import gui.persona.modelos.Cargo;
+import gui.persona.modelos.Profesor;
+
 import java.util.List;
 
 public interface IGestorPersonas {
