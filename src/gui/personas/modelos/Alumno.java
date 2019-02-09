@@ -5,17 +5,15 @@
  */
 package gui.personas.modelos;
 
-import unt.herrera.prog2.tp4.*;
 import java.util.Objects;
-
 
 /**
  *
- * @author Gianpaolo
+ * @author Flor & Miguel
  */
-public class Alumno extends Persona {
+public class Alumno extends Persona{
+
     private String cx;
-    
 
     public String getCx() {
         return cx;
@@ -25,36 +23,45 @@ public class Alumno extends Persona {
         this.cx = cx;
     }
 
-    
 
-    public Alumno(String apellidos, String nombres, int dni,String cx) {
-        super(apellidos,nombres,dni);
+
+    public Alumno(String nombres, String apellidos, int dni, String cx) {
+        super(nombres,apellidos,dni);
         this.cx = cx;
-        
-    }
-    
-    
-    public void mostrar(){
-     System.out.print("CX: "+this.cx+" - ");
-        super.mostrar();
-    }
 
-    
-    
-    
+    }
     
     @Override
+    public void mostrar()
+    {
+        super.mostrar();
+        System.out.print(" // Legajo: "+this.getCx()+"\n");
+    }
+
+    @Override
+    public String toString() {
+        this.mostrar();
+        return ""; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.cx)+super.hashCode();
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.cx);
         return hash;
     }
 
+
+
+
+
     @Override
     public boolean equals(Object obj) {
-        if(super.equals(obj)){
+        
+        if(super.equals(obj))
+        {
             return true;
-        }
+                    }
         if (this == obj) {
             return true;
         }
@@ -70,12 +77,8 @@ public class Alumno extends Persona {
         }
         return true;
     }
-
     
-    
-    
-    
-    
+     
     
     
 }

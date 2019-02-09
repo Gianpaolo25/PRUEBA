@@ -5,336 +5,363 @@
  */
 package gui.personas.modelos;
 
+import gui.interfaces.IGestorPersonas;
+//import gui.interfaces.IGestorTrabajos;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
+
+
 
 /**
  *
- * @author jonas
- */  //LISTO
-public class GestorPersonas implements IGestorPersonas{
-    
-    List<Persona> listaPersona= new ArrayList<>();
-   
-    
-    // siempre para crear un solo gestor
-    private static GestorPersonas gestor;
-    
-    private GestorPersonas(){}
-    
-    public static GestorPersonas crear(){
-        if(gestor==null){
-            gestor = new GestorPersonas();
-        }
-        return gestor;
-    }
-    
-    
-    @Override //OK 
-//METODO PARA CREACION Y CARGA DE UN NUEVO PROFESOR--------------------
-    public String nuevoProfesor(String apellidos,String nombres,int dni,Cargo cargo){
-    String mensaje;   
-    
-        if(apellidos==null || apellidos.isEmpty()){
-            mensaje="Ultimo APELLIDO ingresado incorrecto";
-            return mensaje;
-        } 
-        if(nombres==null || nombres.isEmpty()){
-            mensaje="Ultimo NOMBRE ingresado incorrecto";
-            return mensaje;
-        }
-         if(dni<=0){
-            mensaje="Ultimo DNI ingresado incorrecto";
-            return mensaje;
-        }
-         if(cargo==null){
-            mensaje="Ultimo CARGO ingresado es incorrecto";
-            return mensaje;
-         }
-         
-         
-         
-         
-        // SI LOS DATOS HAN SIDO INGRESADOS CORRECTAMENTE ENTONCES CREO UN PROFESOR
-         Persona profesor = new Profesor(apellidos, nombres, dni, cargo);  
-         
-         
-                    if(listaPersona.isEmpty()){ // si el list esta vacio entonces agrega al profesor sin problemas
-                     listaPersona.add(profesor);
-                      mensaje="Se agrego el profesor: "+profesor.getApellidos()+" con exito";
-                      return mensaje;
-                    }else{ // cuando el list no esta vacio entonces hace control para que no se repitan los profes
-         
-                    int  b=0; // el bucle for me avisa si el profe esta repetido o no;
-                    for(Persona i: listaPersona){
-                                  if(i.equals(profesor)){
-                                      b=1;
-                                  } 
-                        }//cierra for
-                  
-                    if(b==1){
-                        mensaje="No se agrego el profesor: "+profesor.getApellidos()+". Ya se encuentra registrado";
-                        return mensaje; // b=1 signigica que el profe esta repetido, entonces no agrega nada
-                    }else {
-                            listaPersona.add(profesor);
-                             mensaje="Se agrego el profesor: "+profesor.getApellidos()+" con exito";
-                            return mensaje;}
+ */
 
-                    }// cierra else  
-                    
-                    
-         } //cierra if principal
-         
-         
+
+public class GestorPersonas implements IGestorPersonas {
+
+    @Override
+    public int ordenProfesor(Profesor profesor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int ordenAlumno(Alumno alumno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int verUltimoProfesor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int verUltimoAlumno() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cancelarProfesor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cancelarAlumno() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    ArrayList<Persona> personas =new ArrayList<>();
+    ArrayList<Profesor> profesores= new ArrayList<>();
+    ArrayList<Alumno> alumnos= new ArrayList<>();
+    static GestorPersonas g;
+    static String mensajeCorrecto="se agrego correctamente";
+     static String mensajeIncorrecto="se creo pero no se agrego correctamente";
+    static String mensajeErrorApellido="no se creo ya que el apellido esta mal";
+    static String mensajeErrorNombre="no se creo ya que el nombre esta mal";
+    static String mensajeErrorDNI="no se creo ya que el DNI esta mal";
+    static String mensajeErrorCargo="no se creo ya que el cargo esta mal";
+    static String mensajeErrorCx="no se creo ya que el cx esta mal";
      
-       
     
+    public static final String ARCHIVO = "./Archivo.txt";
+    public static final char SEPARADOR = ',';
+    public static final char DIVISION  = '-';
+    public static final char PROFE   = '_';
     
-    
-    
-    @Override //OK
-    /**
-     * esto es para un nuevo alumno en un list list listapersonas, pide String apellido, String nombre,int dni, String cx
-    */
-    public String nuevoAlumno(String apellidos, String nombres, int dni,String cx){
-        String mensaje;
-        
-         if(apellidos==null || apellidos.isEmpty()){
-            mensaje="Ultimo APELLIDO ingresado incorrecto";
-            return mensaje;
-        } 
-        if(nombres==null || nombres.isEmpty()){
-            mensaje="Ultimo NOMBRE ingresado incorrecto";
-            return mensaje;
-        }
-         if(dni<=0){
-            mensaje="Ultimo DNI ingresado incorrecto";
-            return mensaje;
-        }
-         if(cx==null || cx.contains("-") || cx.isEmpty()){
-             mensaje="Ultimo CX ingresado invalido";
-             return mensaje;
-         }
-         
-          
-              // SI LOS DATOS INGRESADOS ESTAN BIEN ENTONCES CREA EL ALUMNO
-             Persona alumno = new Alumno(apellidos, nombres, dni, cx);
-             int c=0;//sirve como bandera   
-                    for(Persona i: listaPersona){
-                        if(i.equals(alumno)){  
-                           c=1;// c vale 1 cuando encuentra una persona identica a la ingresada
-                        }
-                    }// cierra for
-           if(c==0){// si ya se encuentra una persona con los mismos datos entonces no la agrega al list
-               listaPersona.add(alumno);
-               mensaje="EL alumno: "+alumno.getApellidos()+". Ha sido cargado con exito";
-               return mensaje;
-           }else{
-               mensaje="No se agregó el alumno: "+alumno.getApellidos()+". Ya se encuentra en la lista";
-               return mensaje;
-           }
-    
-    }   
-    
-    
-    @Override //OK
-    // BUSCA LOS PROFESORES INGRESADOS AL FILTRO
-    public List<Profesor> buscarProfesores(String apellido){
-    List<Profesor> resultadoProfesores  = new ArrayList<>(); // aqui se guardan los resultados de las busquedas
-    
-        if(apellido!=null){
-            for(Persona i: listaPersona){
-                   if(i instanceof Profesor && i.getApellidos().contains(apellido)){ // filtro para que busque: 1° QUE SEA PROFESOR y 2° QUE TENGA EL APELLIDO DEL FILTRO
-                        resultadoProfesores.add((Profesor) i); // con un operador CAST puedo agregar una persona a un list de profesores
-                     }                                          // pues CAST convierte los tipos de datos                    
-            }
-        }else{System.out.println("Apellido ingresado incorrecto/null");}
-    
-    
-    System.out.println("Resultados de la busqueda para:  "+apellido);
-    return resultadoProfesores;
+    private GestorPersonas() {        
+    this.leerArchivo();
     }
-      
-    
- 
-    
-    
-    @Override // ENVIA UN PROFESOR SEGUN DNI QUE INGRESEMOS
-    public Profesor dameProfesor(int documento){
-    Profesor aux = null; // objeto de tipo profesor el cual copiara y mostrara en caso de que coincida la busqueda     
-    int x=0;
-    if(documento>0){
-           
-            for(Persona i:listaPersona){
-                if(i instanceof Profesor && i.getDni()==documento){ // no es necesario hacer instanceof pues el dni es unico(alumnos y profesores tienen dni diferentes)
-                         aux=(Profesor)i; //utilizo CASE paso de persona a profesor
-                         x=1;
-                   }// si coincide entonces x=1 entonces anota que hay un profesor con ese dni
-                
-            }  
-    }else  System.out.println("Documento ingresado Incorrecto");
-      
-        if(x==0){
-            System.out.println("N° DNI ingresado en esta linea no encontrado");
-        }
-       
-    return aux;
+    public static GestorPersonas inicializar(){
+    if(g== null)
+    {
+        g=new GestorPersonas();
     }
-    
-    
-    
-    
-    @Override // MUESTRA LOS ALUMNOS QUE TIENEN COINCIDENCIA DE APELLIDO CON EL FILTRO
-    public List<Alumno> buscarAlumnos(String apellido){
-    List<Alumno> resultadoAlumnos  = new ArrayList<>(); // aqui se guardan los resultados de las busquedas
-    
-        if(apellido!=null || !apellido.isEmpty()){
-            for(Persona i: listaPersona){
-                   if(i instanceof Alumno && i.getApellidos().contains(apellido)){ // filtro para que busque: 1° QUE SEA Alumno y 2° QUE TENGA EL APELLIDO DEL FILTRO
-                        resultadoAlumnos.add((Alumno) i); // con un operador CAST puedo agregar una persona a un list de alumnos
-                     }                                          // pues CAST convierte los tipos de datos                    
-            }
-        }else{System.out.println("Apellido ingresado incorrecto/null");}
-    
-    
-    System.out.println("Resultados de la busqueda para: "+apellido);
-    return resultadoAlumnos;
+    return g;
     }
-        
-    
-    
-
     
     @Override
-    public Alumno dameAlumno(String cx){
-    Alumno aux ; // utilizo para pasar el objeto i (persona) a aux(Alumno)
-    Alumno aux2=null; //luego si el objeto aux(de tipo alumno) contiene un cx requerido lo copia a aux2 y muestra aux2
-        if(cx!=null && !cx.isEmpty()){
-            for(Persona i:listaPersona){
-                if(i instanceof Alumno){ // primero pregunta si i es una instancia de alumno, si es asi entonces a ese alumno lo manda al objeto auxiliar (aux), luego trabajo el resto con aux
-                    aux=(Alumno)i;
-                    if(aux.getCx().equals(cx)){
-                        aux2=aux;
-                    }
+    public String nuevoProfesor(String apellidos, String nombres, int dni, Cargo cargo){
+        if(!ControlString(apellidos)){
+            return mensajeErrorApellido;
+        }
+        if(!ControlString(nombres))   {
+            return mensajeErrorNombre;
+                                         }         
+       if(dni<=0){
+           return mensajeErrorDNI;
+                 }
+       if(cargo==null){
+            return mensajeErrorCargo;
+                      }
+        Profesor profesor=new Profesor(apellidos,nombres,dni,cargo);
+                            if(!personas.contains(profesor)){
+                                personas.add(profesor);
+                                this.escribirArchivo();
+                                return mensajeCorrecto;
+                                                            }
+                            else return mensajeIncorrecto;
+
+                   
+    }
+    
+    private boolean ControlString (String cadena){
+    if(cadena==null || cadena==""){
+    return false;
+    }
+    else
+        return true;
+    }
+
+    @Override
+    public String nuevoAlumno(String apellidos, String nombres, int dni, String cx) {
+        if(!ControlString(apellidos)){
+            return mensajeErrorApellido;
+        }
+        if(!ControlString(nombres))   {
+            return mensajeErrorNombre;
+                                         }         
+       if(dni<=0){
+           return mensajeErrorDNI;
+                 }
+       if(!ControlString(cx)){
+           return mensajeErrorCx;
                 }
+       Alumno alumno=new Alumno (apellidos,nombres,dni,cx);
+       if(!personas.contains(alumno)){
+                                personas.add(alumno);
+                                this.escribirArchivo();
+                                return mensajeCorrecto;
+                                     }
+                            else return mensajeIncorrecto;
+    }
+
+    @Override
+    public ArrayList<Profesor> buscarProfesores(String apellidos) {
+       ArrayList<Profesor> profesores=new ArrayList<>();
+       profesores=null;
+        for(Persona e: personas){
+            if(e instanceof Profesor){
+            if(e.getApellido().indexOf(apellidos)!=-1){
+             profesores.add((Profesor)e);
             }
-         }else System.out.println("CX ingresado en esta linea incorrecto");
+            }
+       }
+        return profesores;
+    }
+
+
+    @Override
+    public ArrayList<Alumno> buscarAlumnos(String apellidos) {
+       ArrayList<Alumno> alumnos=new ArrayList<>();
+       alumnos=null;
+        for(Persona e: personas){
+            if(e instanceof Alumno){
+            if(e.getApellido().indexOf(apellidos)!=-1){
+             alumnos.add((Alumno)e);
+            }
+            }
+       }
+        return alumnos;
+    
+    }
+
+    @Override
+    public Profesor dameProfesor(int documento) {
+        for(Persona e: personas){
+        if(e instanceof Profesor){
+        if(String.valueOf(e.getDni()).indexOf(String.valueOf(documento))!=-1){
+            return (Profesor)e;
+                                 }
+        }
+        }
+        return null;
+    }
+
+    @Override
+    public Alumno dameAlumno(String cx) {
+        for(Persona e: personas){
+        if(e instanceof Alumno){
+       if(((Alumno) e).getCx().indexOf(cx)!=-1){
+            return (Alumno)e;
+                                 }
+        }
+        }
+        return null;
+    }
+
+
+    public void mostrarPersonas() {
+        for(Persona e: personas){
+        e.mostrar();
+        }
+    }
+
+
+    public void mostrarAlumnos() {
+          for(Persona e: personas){
+              if(e instanceof Alumno)
+                e.mostrar();
+        }  
+    }
+
+ 
+    public void mostrarProfesores() {
+     for(Persona e: personas){
+              if(e instanceof Profesor)
+                e.mostrar();
+       } 
+    }
+ 
+    public void ordenar (){
+    Comparator<Persona> cpo =(a1,a2)->{
         
+        if(a1.getApellido().compareToIgnoreCase(a2.getApellido())!=0){
+        return a1.getApellido().compareToIgnoreCase(a2.getApellido());
+                                                           }
         
-    return aux2;
+        return a1.getNombre().compareToIgnoreCase(a2.getNombre());
+            };
+    
+    personas.sort(cpo);
     }
-
-    
-    
-
-    @Override
-    public void mostrarPersonas(){  //  muestra las personas
-        for(Persona i:listaPersona){
-            i.mostrar();
-        }
-    }
-    
-    
-    @Override
-    public void mostrarProfesores(){ // muestra solamente los profesores
-        for(Persona i: listaPersona){
-            if(i instanceof Profesor){
-                i.mostrar();
-            }
-        }
-    }
-    
-    
-    @Override
-    public void mostrarAlumnos(){  // muestra solamente los alumnos
-        for(Persona i: listaPersona){
-            if(i instanceof Alumno){
-                i.mostrar();
-            }
-        }
-    }
-    
-    
-    
-    //////// METODO PARA ORDENA (Apellido y nombre)
-    
-    //   Metodo para comparar con mas de un atributo
-    @Override
-    /**
-     * *
-      *Primero revisa si los apellidos con iguales, en el caso de que sean iguales
-      *entra al if y compara por nombres, de lo contrario nunca entra al if  y 
-      * compara normalmente por apellido
-      * 
-       */   
-    public void ordenarPersonas (){
-   Comparator<Persona> comparacionPersona= (Persona persona1,Persona persona2)->{
-    
-       if(persona1.getApellidos().compareToIgnoreCase(persona2.getApellidos())==0){
-             return persona1.getNombres().compareToIgnoreCase(persona2.getNombres());}
-           return persona1.getApellidos().compareToIgnoreCase(persona2.getApellidos());
-           }; 
-
-       listaPersona.sort(comparacionPersona);
-           }
 
     @Override
     public String modificarProfesor(Profesor profesor, String apellidos, String nombres, Cargo cargo) {
-       if(listaPersona.contains(profesor)){
-        
-       listaPersona.get(listaPersona.indexOf(profesor)).setApellidos(apellidos);
-       listaPersona.get(listaPersona.indexOf(profesor)).setNombres(nombres);
-       return "Se hicieron las modificaciones pertinentes";
-       }
-       else{return "no se hicieron modificaciones";}
        
+        if(apellidos==null||apellidos==""){
+        return "no se modifico el profesor por el apellido";
+        }
+        if(nombres==null || nombres==""){
+        return "no se modifico el profesor por el nombre";
+        }
+        if(cargo==null){
+        return "no se modifico el profesor por el cargo";
+        }
+            Profesor pro= new Profesor(apellidos,nombres,personas.get(personas.indexOf(profesor)).getDni(),cargo);
+            personas.set(personas.indexOf(profesor),pro);
+            this.escribirArchivo();
+        return "se modifico el profesor";
     }
 
     @Override
     public String modificarAlumno(Alumno alumno, String apellidos, String nombres, String cx) {
-       if(listaPersona.contains(alumno)){
-        
-       listaPersona.get(listaPersona.indexOf(alumno)).setApellidos(apellidos);
-       listaPersona.get(listaPersona.indexOf(alumno)).setNombres(nombres);
-        return "Se hicieron las modificaciones pertinentes";
+        if(apellidos==null||apellidos==""){
+        return "no se modifico el profesor por el apellido";
+        }
+        if(nombres==null || nombres==""){
+        return "no se modifico el profesor por el nombre";
+        }
+        if(cx==null){
+        return "no se modifico el profesor por el cargo";
+        }
+        personas.set(personas.indexOf(alumno),new Alumno(apellidos,nombres,personas.get(personas.indexOf(alumno)).getDni(),cx));
+        this.escribirArchivo();
+        return "se modifico el alumno";
     }
-       else{
-        return "No see hicieron modificaciones";}
+    
+    
+//    IGestorTrabajos traba=GestorTrabajos.inicializar();
+//    @Override
+    public String borrarProfesor(Profesor profesor) { //MODIFICAR PARA MOSTRAR LO CORRECTO TENIENDO TRABAJO
+//      for(Trabajo e: traba.mandarLista()){
+//          for(RolEnTrabajo r:e.getTodo())
+//          if(r.getProfesor()==profesor){
+//              return "no lo puede borrar";
+//          }
+//          }
+//      personas.remove(profesor);
+//      this.escribirArchivo();
+      return "se borro con exito";
     }
 
-    @Override
-    public String borrarProfesor(Profesor profesor) {
-      
-       if(listaPersona.contains(profesor)){
-                 if(GT.listaTrabajos.contains(profesor)){
-                     return "No se hicieron cambios en la lista";    
-                                                        }
-                 else{
-                      listaPersona.remove(profesor);
-                        return "Se removio al alumno de la lista";}
-                        }   
-             return "No se hicieron cambios en la lista"; 
-    
+//    @Override
+    public String borrarAlumno(Alumno alumno) {  //MODIFICAR PARA MOSTRAR LO CORRECTO TENIENDO TRABAJO
+//    for(Trabajo e: traba.mandarLista()){
+//        for(AlumnoEnTrabajo r: e.getAlumnos()){
+//        if(r.getAlumno()==alumno){
+//            return "no se puede borrar";
+//        }
+//                                 }
+//                                  }
+//    personas.remove(alumno);
+//    this.escribirArchivo();
+        return "se borro con exito";
     }
-GestorTrabajos GT=GestorTrabajos.crear();
-    @Override
-    public String borrarAlumno(Alumno alumno) {
-         
-             
-             if(listaPersona.contains(alumno)){
-                 if(GT.listaTrabajos.contains(alumno)){
-                     return "No se hicieron cambios en la lista";    
-                                                        }
-                 else{
-                      listaPersona.remove(alumno);
-                        return "Se removio al alumno de la lista";}
-                        }   
-             return "No se hicieron cambios en la lista"; 
+    /**anda*/
+ public ArrayList<Persona> mandaLista (){
+ return this.personas;
+                                        }  
+ 
+ private void leerArchivo() {
+        BufferedReader br = null;
+        File file = new File(ARCHIVO);
+        if (file.exists()) {
+            try {
+                FileReader fr = new FileReader(file);
+                br = new BufferedReader(fr);
+                String cadena;// = null;
+                while((cadena = br.readLine()) != null) {
+                    String[] cadenadivicion = cadena.split(Character.toString(SEPARADOR));
+                     String cadena1=String.valueOf(cadenadivicion);
+                     String[] vector= cadena1.split(Character.toString(DIVISION));
+                      String nombre = vector[0];
+                      String apellido= vector[1];
+                      String DNI=vector[2];
+                      String cargoCX=vector[3];
+                      if(cargoCX.indexOf(PROFE)>-1){
+                          cargoCX.substring(1);
+                      Cargo cargo=Cargo.valueOf(cargoCX);
+                    Profesor unaProfesor = new Profesor(apellido,nombre,Integer.valueOf(DNI),cargo);
+                        this.personas.add(unaProfesor);
+                                                 }
+                      else{
+                      Alumno UnAlumno= new Alumno(nombre,apellido,Integer.valueOf(DNI),cargoCX);  
+                      this.personas.add(UnAlumno);
+                          }
+                }
+            }
+            catch (IOException ioe) {
+                System.out.println("Error al leer del archivo " + ARCHIVO);
+            }
+            finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    }
+                    catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
+                }
+            }
+        }
     }
-    
-    
-    
-    
-}   
-    
+ 
+   private void escribirArchivo() {
+        File file = new File(ARCHIVO);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {     
+            for(Persona UnaPersona : this.personas) {
+                String cadena;
+                if(UnaPersona instanceof Profesor){
+                 cadena = UnaPersona.getNombre() + DIVISION + UnaPersona.getApellido() + DIVISION + UnaPersona.getDni() + DIVISION + PROFE +((Profesor) UnaPersona).getCargos().name()+SEPARADOR;
+                                                  }
+                else{
+                cadena = UnaPersona.getNombre()+ DIVISION+ UnaPersona.getApellido()+DIVISION+UnaPersona.getDni()+DIVISION+((Alumno)UnaPersona).getCx()+SEPARADOR;
+                    }
+                bw.write(cadena);
+                bw.newLine();
+            }
+        } 
+        catch (IOException ioe) {
+            System.out.println("Error al escribir en el archivo " + ARCHIVO);
+        }
+    } 
+   
+
+   
+   
+   
+}

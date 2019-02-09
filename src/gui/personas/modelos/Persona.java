@@ -5,62 +5,49 @@
  */
 package gui.personas.modelos;
 
-import unt.herrera.prog2.tp4.*;
-
 /**
  *
- * @author Gianpaolo
+ * @author Flor & Miguel
  */
-public abstract class Persona {
-   private String apellidos;
-   private String nombres;
-   private int dni;
+public abstract class Persona{
+    private String Nombre;
+    private String apellido;
+    private int Dni;
 
-    public String getApellidos() {
-        return apellidos;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public int getDni() {
-        return dni;
+        return Dni;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setDni(int Dni) {
+        this.Dni = Dni;
     }
 
-    public Persona(String apellidos, String nombres, int dni) {
-        this.apellidos = apellidos;
-        this.nombres = nombres;
-        this.dni = dni;
-    }
-    
-    
-    public void mostrar(){
-    System.out.println("["+this.dni+"]"+" "+this.apellidos.toUpperCase()+" "+this.nombres.toUpperCase());
-    
-    }
-
-    @Override
-    public String toString() {
-        return  this.apellidos+", "+this.nombres;
+    public Persona(String Nombre, String apellido, int Dni) {
+        this.Nombre = Nombre;
+        this.apellido = apellido;
+        this.Dni = Dni;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.dni;
+        hash = 11 * hash + this.Dni;
         return hash;
     }
 
@@ -76,13 +63,26 @@ public abstract class Persona {
             return false;
         }
         final Persona other = (Persona) obj;
-        if (this.dni != other.dni) {
+        if (this.Dni != other.Dni) {
+       
             return false;
         }
+   
         return true;
+    }    
+    public void mostrar(){
+    System.out.print("["+this.Dni+"]  "+this.apellido+", "+this.Nombre);
     }
     
     
-    
+   @Override
+    public String toString() {
+        this.mostrar();
+        
+        return ""; //To change body of generated methods, choose Tools | Templates.
+        }
+
     
 }
+
+

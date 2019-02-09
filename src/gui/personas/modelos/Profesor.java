@@ -5,42 +5,54 @@
  */
 package gui.personas.modelos;
 
-import unt.herrera.prog2.tp4.*;
-
-
+import java.util.ArrayList;
 
 /**
  *
- * @author Gianpaolo
+ * @author Gianluca
  */
 public class Profesor extends Persona {
-    
-    private Cargo UnCargo;
 
-    
-    
+private Cargo cargos;
 
-    public Cargo getUnCargo() {
-        return UnCargo;
+    public Cargo getCargos() {
+        return cargos;
     }
 
-    public void setUnCargo(Cargo UnCargo) {
-        this.UnCargo = UnCargo;
+    public void setCargos(Cargo cargos) {
+        this.cargos = cargos;
     }
 
-    public Profesor(String apellidos, String nombres, int dni, Cargo UnCargo) {
-        super(apellidos,nombres,dni);
-        this.UnCargo = UnCargo;
+    
+    public Profesor(String apellidos, String nombre, int DNI,Cargo cargos) {
+        
+        super(apellidos,nombre,DNI);
+        this.cargos = cargos;
     }
 
-    public void mostrar (){
-//        System.out.println(" "+this.UnCargo+"\n -----------------");
+    
+
+
+@Override
+    public String toString() {
         super.mostrar();
+        return " // Cargo: "+this.cargos+"\n"; //To change body of generated methods, choose Tools | Templates.
+        }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + super.getDni();
+        return hash;
     }
+
+@Override
+   public void mostrar(){
+   super.mostrar();
+   System.out.println("  // Cargo: "+this.cargos+"\n");
+   
+   }
     
-    
-    
-  
     
     
 }

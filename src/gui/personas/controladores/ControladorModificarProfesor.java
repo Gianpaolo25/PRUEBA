@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.personas.modelos;
-
+package gui.personas.controladores;
 
 /**
  *
- * @author Gianluca
+ * @author Gianpaolo
  */
-public enum Cargo {
-    TITULAR,
-    ASOCIADO,
-    ADJUNTO,
-    JTP,
-    ADG
+public class ControladorModificarProfesor {
+    
 }
