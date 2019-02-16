@@ -306,15 +306,16 @@ public class GestorPersonas implements IGestorPersonas {
                 String cadena;// = null;
                 while((cadena = br.readLine()) != null) {
                     String[] cadenadivicion = cadena.split(Character.toString(SEPARADOR));
-                     String cadena1=String.valueOf(cadenadivicion);
+                     String cadena1=String.valueOf(cadenadivicion[0]);
                      String[] vector= cadena1.split(Character.toString(DIVISION));
-                      String nombre = vector[0];
+                      String nombre = vector[0];              
+
                       String apellido= vector[1];
                       String DNI=vector[2];
                       String cargoCX=vector[3];
                       if(cargoCX.indexOf(PROFE)>-1){
                           cargoCX.substring(1);
-                      Cargo cargo=Cargo.valueOf(cargoCX);
+                      Cargo cargo=Cargo.valueOf(cargoCX.substring(1));
                     Profesor unaProfesor = new Profesor(apellido,nombre,Integer.valueOf(DNI),cargo);
                         this.personas.add(unaProfesor);
                                                  }

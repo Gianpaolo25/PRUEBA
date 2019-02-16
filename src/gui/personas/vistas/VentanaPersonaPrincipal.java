@@ -6,12 +6,6 @@
 package gui.personas.vistas;
 
 import gui.personas.controladores.ControladorPersonas;
-import java.awt.HeadlessException;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -22,7 +16,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPersonaPrincipal
      */
-    private ControladorPersonas CP;
+    private ControladorPersonas CP;           // crea el controlador
     public VentanaPersonaPrincipal() {
         initComponents();
     }
@@ -251,7 +245,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        CP.btnNuevoProfesorClic(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

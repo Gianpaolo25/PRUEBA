@@ -5,14 +5,12 @@
  */
 package gui.principal.controladores;
 
-import gui.areas.controladores.ControladorAreas;
-import gui.interfaces.IControladorAreas;
+//import gui.areas.controladores.ControladorAreas;
 import gui.interfaces.IControladorPersonas;
 import gui.interfaces.IControladorPrincipal;
-import gui.interfaces.IControladorTrabajos;
 import gui.personas.controladores.ControladorPersonas;
 import gui.principal.vistas.VentanaPrincipal;
-import gui.trabajos.controladores.ControladorTrabajos;
+//import gui.trabajos.controladores.ControladorTrabajos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
@@ -35,7 +33,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
      */                            
     @Override
     public void btnAreasClic(ActionEvent evt) {
-        IControladorAreas controlador = new ControladorAreas(this.ventana);
+//        IControladorAreas controlador = new ControladorAreas(this.ventana);
     }
 
     /**
@@ -53,7 +51,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
      */                            
     @Override
     public void btnTrabajosClic(ActionEvent evt) {
-        IControladorTrabajos controlador = new ControladorTrabajos(this.ventana);
+//        IControladorTrabajos controlador = new ControladorTrabajos(this.ventana);
     }
     
     /**

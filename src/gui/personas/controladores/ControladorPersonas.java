@@ -4,10 +4,10 @@ package gui.personas.controladores;
 import gui.interfaces.IControladorPersonas;
 import gui.personas.modelos.GestorPersonas;
 import gui.personas.vistas.VentanaPersonaPrincipal;
+import gui.principal.vistas.VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,26 +22,38 @@ import javax.swing.JOptionPane;
 public class ControladorPersonas implements IControladorPersonas {
     
     
-    public GestorPersonas GP =GestorPersonas.inicializar();
+    
+   public GestorPersonas GP =GestorPersonas.inicializar();
     private static ControladorPersonas CP;
-     private VentanaPersonaPrincipal VPP;
-    public static ControladorPersonas Inicializar(){
-    if(CP==null){CP=new ControladorPersonas();}
+    
+    public static ControladorPersonas Inicializar(){ // para controladores y Gestores
+    if(CP==null)
+    {
+       CP=new ControladorPersonas();
+    }
     return CP;
     }
     
-
+    
+      private VentanaPersonaPrincipal VPP;           //para JFrame
     private ControladorPersonas() {
         VPP=new VentanaPersonaPrincipal(this);
         VPP.setVisible(true);
         VPP.setLocationRelativeTo(null);
     }
-    
+       
     @Override
     public void btnNuevoProfesorClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ControladorAMProfesor CAMP=ControladorAMProfesor.Inicializar(this.VPP);
+        GP.mostrarProfesores();
     }
-
+    
+    
+    
+    public ControladorPersonas(VentanaPrincipal VP) {
+        this();
+    } 
+     
     @Override
     public void btnNuevoAlumnoClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
