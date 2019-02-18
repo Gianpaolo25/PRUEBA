@@ -33,7 +33,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor{
 
     @Override
     public void btnCancelarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.VPAM.dispose();
     }
 
     @Override
@@ -59,16 +59,10 @@ Crear=null;
 private ControladorAMProfesor (VentanaPersonaPrincipal VPP){
     
 this.VPAM=new VentanaProfesorAM(this,VPP,true);
-    
 this.VPAM.setLocationRelativeTo(null);
-
 JComboBox Desplegable=this.VPAM.getComboCargo();
-
 Desplegable.setModel(new ModeloComboCargo());
-
 ((ModeloComboCargo)Desplegable.getModel()).SeleccionarCargo(Cargo.ADG);
-
-
 this.VPAM.setVisible(true);
 }
 

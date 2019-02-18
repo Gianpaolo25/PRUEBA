@@ -142,10 +142,10 @@ public class GestorPersonas implements IGestorPersonas {
     @Override
     public ArrayList<Profesor> buscarProfesores(String apellidos) {
        ArrayList<Profesor> profesores=new ArrayList<>();
-       profesores=null;
+   
         for(Persona e: personas){
             if(e instanceof Profesor){
-            if(e.getApellido().indexOf(apellidos)!=-1){
+            if(e.getApellido().contains(apellidos)){
              profesores.add((Profesor)e);
             }
             }
