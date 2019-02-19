@@ -7,8 +7,10 @@ package gui.personas.controladores;
 
 import gui.personas.modelos.GestorPersonas;
 import gui.personas.modelos.Persona;
+import gui.personas.modelos.Profesor;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -23,11 +25,39 @@ public class ModeloTablaProfesor extends AbstractTableModel{
         this.nombresColumnas.add("Nombre");
         this.nombresColumnas.add("Apellido");        
         this.nombresColumnas.add("DNI"); 
+        this.nombresColumnas.add("Cargo");
+        
+    }
+    int c=0;
+    @Override
+    public Object getValueAt(int fila, int columna) {
+        
+        Profesor UnProfesor = this.ObtenerProfesor(fila);
+        c++;
+        switch (columna) {
+            //No se muestra el cÃ³digo del establecimiento
+            case 0: return UnProfesor.getNombre();
+            case 1: return UnProfesor.getApellido();
+            case 2: return UnProfesor.getDni();
+            case 3: return UnProfesor.getCargos();
+            default: return UnProfesor.getNombre();
+            
+        }
+    }
+    
+    public Profesor ObtenerProfesor(int fila){
+    return this.GP.MandarProfesor2(fila);
+    }
+
+    @Override
+    public String getColumnName(int columna) {
+        return this.nombresColumnas.get(columna);
     }
 
     @Override
     public int getRowCount() {
     return this.GP.verUltimoProfesor();
+            
     }
 
     @Override
@@ -35,17 +65,6 @@ public class ModeloTablaProfesor extends AbstractTableModel{
         return this.nombresColumnas.size();
     }
 
-    @Override
-    public Object getValueAt(int fila, int columna) {
-        
-        Persona UnProfesor = this.GP.dameProfesor(fila);
-        switch (columna) {
-            //No se muestra el cÃ³digo del establecimiento
-            case 0: return UnProfesor.getNombre();
-            case 1: return UnProfesor.getApellido();
-            case 2: return UnProfesor.getDni();
-            default: return UnProfesor.getNombre();
-        }
-    }
+    
 }
     

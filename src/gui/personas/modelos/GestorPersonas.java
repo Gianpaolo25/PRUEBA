@@ -34,12 +34,32 @@ public class GestorPersonas implements IGestorPersonas {
     public int ordenAlumno(Alumno alumno) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+ArrayList <Profesor> Profesoress= new ArrayList <>();
 
+public void CargarProfesor(){
+    for(Persona p: personas){
+        if(p instanceof Profesor ){
+            if(!Profesoress.contains(p)){
+        Profesoress.add(((Profesor)p));}
+        }
+     }
+}
     @Override
     public int verUltimoProfesor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.CargarProfesor();
+    for(Persona p: personas){
+        if(p instanceof Profesor ){
+            if(!Profesoress.contains(p)){
+        Profesoress.add(((Profesor)p));}
+        }
+     }
+    return Profesoress.size();
     }
+public Profesor MandarProfesor2(int i){
+//   this.CargarProfesor();
 
+   
+   return this.Profesoress.get(i);}
     @Override
     public int verUltimoAlumno() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -210,12 +230,22 @@ public class GestorPersonas implements IGestorPersonas {
 
  
     public void mostrarProfesores() {
-     for(Persona e: personas){
-              if(e instanceof Profesor)
+//        for(Persona e: personas){
+//              if(e instanceof Profesor)
+//                e.mostrar();
+//       } 
+        for(Profesor e: profesores){
                 e.mostrar();
-       } 
+       }
     }
- 
+ public void mostrarProfesores1() {
+     for(Profesor e: this.Profesoress){
+          
+                e.mostrar();
+        
+    }
+ }
+    
     public void ordenar (){
     Comparator<Persona> cpo =(a1,a2)->{
         
@@ -265,16 +295,23 @@ public class GestorPersonas implements IGestorPersonas {
     
     
 //    IGestorTrabajos traba=GestorTrabajos.inicializar();
+ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
+
 //    @Override
     public String borrarProfesor(Profesor profesor) { //MODIFICAR PARA MOSTRAR LO CORRECTO TENIENDO TRABAJO
-//      for(Trabajo e: traba.mandarLista()){
+//      for(Trabajo e: UNTRABAJO){
 //          for(RolEnTrabajo r:e.getTodo())
 //          if(r.getProfesor()==profesor){
 //              return "no lo puede borrar";
 //          }
 //          }
-//      personas.remove(profesor);
-//      this.escribirArchivo();
+        
+      Profesoress.remove(profesor);
+      System.out.println("-------------------------------");
+      this.mostrarProfesores();
+            System.out.println("-------------------------------");
+     
+      this.escribirArchivo();
       return "se borro con exito";
     }
 
@@ -287,14 +324,19 @@ public class GestorPersonas implements IGestorPersonas {
 //        }
 //                                 }
 //                                  }
-//    personas.remove(alumno);
+//personas.remove(alumno);
 //    this.escribirArchivo();
         return "se borro con exito";
     }
     /**anda*/
  public ArrayList<Persona> mandaLista (){
  return this.personas;
-                                        }  
+ 
+ }
+ public ArrayList<Profesor> MandarListaProfesores (){
+ return this.profesores;}
+ 
+ 
  
  private void leerArchivo() {
         BufferedReader br = null;

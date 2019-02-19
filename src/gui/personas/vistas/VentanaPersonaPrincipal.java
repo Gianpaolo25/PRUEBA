@@ -6,6 +6,7 @@
 package gui.personas.vistas;
 
 import gui.personas.controladores.ControladorPersonas;
+import javax.swing.JTable;
 
 /**
  *
@@ -26,7 +27,16 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         CP=aThis;
         
     }
- 
+
+    public JTable getAlumnos() {
+        return Alumnos;
+    }
+
+    public JTable getProfesores() {
+        return Profesores;
+    }
+
+   
     
    
     /**
@@ -46,11 +56,11 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Profesores = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Profesores = new javax.swing.JTable();
+        Alumnos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -68,7 +78,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Nueva Profesor");
+        jButton1.setText("Nuevo Profesor");
         jButton1.setActionCommand("Nuevo Profesor");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +94,11 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         });
 
         jButton5.setText("Borrar Profesor");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Buscar Profesor");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +129,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        Profesores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -122,10 +137,10 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Apellido", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(Profesores);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Profesores");
@@ -147,7 +162,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
                 .addGap(83, 83, 83))
         );
 
-        Profesores.setModel(new javax.swing.table.DefaultTableModel(
+        Alumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -158,7 +173,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(Profesores);
+        jScrollPane1.setViewportView(Alumnos);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Alumnos");
@@ -266,28 +281,32 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CP.btnNuevoProfesorClic(evt);
+    this.CP.btnNuevoProfesorClic(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-  CP.btnVolverClic(evt);
+    this.CP.btnVolverClic(evt);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  CP.btnModificarProfesorClic(evt);
+    this.CP.btnModificarProfesorClic(evt);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-      this.CP.btnBuscarProfesorClic(evt);
+    this.CP.btnBuscarProfesorClic(evt);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-  CP.btnNuevoAlumnoClic(evt);
+    this.CP.btnNuevoAlumnoClic(evt);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-  this.CP.btnBuscarAlumnoClic(evt);
+    this.CP.btnBuscarAlumnoClic(evt);
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    this.CP.btnBorrarProfesorClic(evt);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,6 +315,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Alumnos;
     private javax.swing.JTable Profesores;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -314,6 +334,5 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
