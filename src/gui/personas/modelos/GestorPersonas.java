@@ -262,7 +262,7 @@ public Alumno MandarAlumno2(int i){
         for(Persona e: personas){
               if(e instanceof Profesor)
                 //e.mostrar();
-              System.out.println(e.getApellido());
+              System.out.println(((Profesor) e).getCargos());
        } 
 //        for(Profesor e: profesores){
 //                e.mostrar();
@@ -387,14 +387,18 @@ ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
                       String apellido= vector[1];
                       String DNI=vector[2];
                       String cargoCX=vector[3];
+                      
                      if(cargoCX.indexOf(PROFE)>-1){
-                      //    cargoCX.substring(1);
-                  //    Cargo cargo=Cargo.valueOf(cargoCX.substring(1));
-                    Profesor unaProfesor = new Profesor(apellido,nombre,Integer.valueOf(DNI),Cargo.TITULAR);
+                          cargoCX.substring(1);
+                      Cargo cargo=Cargo.valueOf(cargoCX.substring(1));
+                      System.out.println(cargo);
+                    Profesor unaProfesor = new Profesor(apellido,nombre,Integer.valueOf(DNI),cargo);
                         this.personas.add(unaProfesor);
                                                  }
                       else{
-                      Alumno UnAlumno= new Alumno(nombre,apellido,Integer.valueOf(DNI),cargoCX);  
+                         
+                      Alumno UnAlumno= new Alumno(nombre,apellido,Integer.valueOf(DNI),cargoCX);
+                     System.out.println(UnAlumno.getApellido());
                       this.personas.add(UnAlumno);
                           }
                 }

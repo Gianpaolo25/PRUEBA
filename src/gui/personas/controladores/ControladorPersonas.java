@@ -63,7 +63,11 @@ public class ControladorPersonas implements IControladorPersonas {
         CAMP.Anular();
         GP.mostrarProfesores();  //mas adelante se lo borra        
     }
-          
+    
+    
+    
+    
+    
     
     
     

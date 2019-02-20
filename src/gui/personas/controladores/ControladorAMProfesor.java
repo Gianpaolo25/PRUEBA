@@ -23,8 +23,8 @@ public class ControladorAMProfesor implements IControladorAMProfesor{
     GestorPersonas GP= GestorPersonas.inicializar();
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-    String Nombre= this.VPAM.getjTextField2().getText();
-    String Apellido= this.VPAM.getjTextField1().getText();
+    String Nombre= this.VPAM.getjTextField1().getText();
+    String Apellido= this.VPAM.getjTextField2().getText();
     Cargo cargo= (Cargo)this.VPAM.getjComboBox2().getSelectedItem();
     int dni=Integer.parseInt(this.VPAM.getjTextField3().getText());
     System.out.println(GP.nuevoProfesor(Apellido, Nombre, dni, cargo));

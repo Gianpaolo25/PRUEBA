@@ -21,8 +21,8 @@ GestorPersonas GP= GestorPersonas.inicializar();
          
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-    String Nombre= this.VAAM.getjTextField1().getText();
-    String Apellido= this.VAAM.getjTextField2().getText();
+    String Nombre= this.VAAM.getjTextField2().getText();
+    String Apellido= this.VAAM.getjTextField1().getText();
     String cx=this.VAAM.getjTextField4().getText();
     int dni=Integer.parseInt(this.VAAM.getjTextField3().getText());
     GP.nuevoAlumno(Apellido, Nombre, dni, cx);
