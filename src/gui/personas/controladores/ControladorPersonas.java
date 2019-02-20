@@ -29,7 +29,7 @@ public class ControladorPersonas implements IControladorPersonas {
     
     
        
-   public GestorPersonas GP =GestorPersonas.inicializar();
+    public GestorPersonas GP =GestorPersonas.inicializar();
     private static ControladorPersonas CP;
     //private Profesor LUIS;
     public static ControladorPersonas Inicializar(){ // para controladores y Gestores
@@ -40,7 +40,7 @@ public class ControladorPersonas implements IControladorPersonas {
     return CP;
     }
     
-      private VentanaPersonaPrincipal VPP;           //para JFrame
+    private VentanaPersonaPrincipal VPP;           //para JFrame
     private ControladorPersonas() {
         
         VPP=new VentanaPersonaPrincipal(this);

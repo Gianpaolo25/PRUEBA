@@ -21,7 +21,7 @@ public class ControladorProfesorBuscar {
     GestorPersonas GP= GestorPersonas.inicializar();
     private static ControladorProfesorBuscar Crear; 
     private VentanaProfesorBuscar VPB;
-public ArrayList <Profesor> ProfesoresBuscados=new ArrayList<>();
+    public ArrayList <Profesor> ProfesoresBuscados=new ArrayList<>();
     private ControladorProfesorBuscar(VentanaPersonaPrincipal VentanaPadre) {
      this.VPB=new VentanaProfesorBuscar(this,VentanaPadre,true);
      this.VPB.setLocationRelativeTo(null);

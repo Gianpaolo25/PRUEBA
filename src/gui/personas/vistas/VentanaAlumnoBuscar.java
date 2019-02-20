@@ -15,8 +15,6 @@ import javax.swing.JTextField;
  */
 public class VentanaAlumnoBuscar extends javax.swing.JDialog {
 ControladorAlumnoBuscar CAB;
-
-    
     /**
      * Creates new form VentanaAlumnoBuscar
      */

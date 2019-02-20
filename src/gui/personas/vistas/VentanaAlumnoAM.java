@@ -6,6 +6,7 @@
 package gui.personas.vistas;
 
 import gui.personas.controladores.ControladorAMAlumno;
+import java.awt.Frame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -16,10 +17,16 @@ import javax.swing.JTextField;
 public class VentanaAlumnoAM extends javax.swing.JDialog {
 ControladorAMAlumno CAMA;
 
-    public VentanaAlumnoAM(ControladorAMAlumno aThis, VentanaPersonaPrincipal VPP, boolean b) {
-     super(VPP,b);
+//    public VentanaAlumnoAM(ControladorAMAlumno aThis, VentanaPersonaPrincipal VPP, boolean b) {
+//     super(VPP,b);
+//     initComponents();
+//     CAMA=aThis;
+//    }
+    
+    public VentanaAlumnoAM(ControladorAMAlumno CAMA, Frame parent, boolean modal) {
+     super(parent,modal);
      initComponents();
-     CAMA=aThis;
+     this.CAMA=CAMA;
     }
 
     public JButton getjButton1() {

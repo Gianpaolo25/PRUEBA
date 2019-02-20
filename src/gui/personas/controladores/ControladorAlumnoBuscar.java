@@ -18,10 +18,10 @@ import java.util.ArrayList;
  */
 public class ControladorAlumnoBuscar {
     
-GestorPersonas GP= GestorPersonas.inicializar();
-private static ControladorAlumnoBuscar Crear; 
+    GestorPersonas GP= GestorPersonas.inicializar();
+    private static ControladorAlumnoBuscar Crear; 
     private VentanaAlumnoBuscar VAB;
-public ArrayList <Alumno> AlumnosBuscados=new ArrayList<>();
+    public ArrayList <Alumno> AlumnosBuscados=new ArrayList<>();
     private ControladorAlumnoBuscar(VentanaPersonaPrincipal VentanaPadre) {
      this.VAB=new VentanaAlumnoBuscar(this,VentanaPadre,true);
      this.VAB.setLocationRelativeTo(null);
