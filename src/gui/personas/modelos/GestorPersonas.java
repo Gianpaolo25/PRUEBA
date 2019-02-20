@@ -35,6 +35,7 @@ public class GestorPersonas implements IGestorPersonas {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 ArrayList <Profesor> Profesoress= new ArrayList <>();
+ArrayList <Alumno> Alumnoss= new ArrayList<>();
 
 public void CargarProfesor(){
     for(Persona p: personas){
@@ -44,6 +45,16 @@ public void CargarProfesor(){
         }
      }
 }
+
+public void CargarAlumno(){
+    for(Persona p: personas){
+        if(p instanceof Alumno ){
+            if(!Alumnoss.contains(p)){
+        Alumnoss.add(((Alumno)p));}
+        }
+     }
+}
+
     @Override
     public int verUltimoProfesor() {
     this.CargarProfesor();
@@ -58,11 +69,25 @@ public void CargarProfesor(){
 public Profesor MandarProfesor2(int i){
 //   this.CargarProfesor();
 
-   
    return this.Profesoress.get(i);}
+
+public Alumno MandarAlumno2(int i){
+//   this.CargarAlumno();
+
+   return this.Alumnoss.get(i);}
+
+
     @Override
     public int verUltimoAlumno() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        this.CargarAlumno();
+    for(Persona p: personas){
+        if(p instanceof Alumno ){
+            if(!Alumnoss.contains(p)){
+        Alumnoss.add(((Alumno)p));}
+        }
+     }
+    return Alumnoss.size();
     }
 
     @Override
@@ -306,6 +331,9 @@ ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
 //          }
 //          }
         
+
+
+
       Profesoress.remove(profesor);
       System.out.println("-------------------------------");
       this.mostrarProfesores();

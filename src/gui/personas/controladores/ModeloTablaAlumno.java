@@ -5,8 +5,8 @@
  */
 package gui.personas.controladores;
 
+import gui.personas.modelos.Alumno;
 import gui.personas.modelos.GestorPersonas;
-import gui.personas.modelos.Profesor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -15,46 +15,45 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Gianpaolo
  */
-public class ModeloTablaProfesor extends AbstractTableModel{
-     private List<String> nombresColumnas = new ArrayList<>(); 
+public class ModeloTablaAlumno extends AbstractTableModel{
+    private List<String> nombresColumnas = new ArrayList<>(); 
      private GestorPersonas GP = GestorPersonas.inicializar();
 
-    public ModeloTablaProfesor() {
+    public ModeloTablaAlumno() {
         this.nombresColumnas.add("Nombre");
         this.nombresColumnas.add("Apellido");        
         this.nombresColumnas.add("DNI"); 
-        this.nombresColumnas.add("Cargo");
-        
-    }   
-    @Override
-    public Object getValueAt(int fila, int columna) {
-        
-        Profesor UnProfesor = this.ObtenerProfesor(fila);
-        switch (columna) {
-           
-            case 0: return UnProfesor.getNombre();
-            case 1: return UnProfesor.getApellido();
-            case 2: return UnProfesor.getDni();
-            case 3: return UnProfesor.getCargos();
-            default: return UnProfesor.getNombre();
-            
-        }
-    }
-   
-    
-    public Profesor ObtenerProfesor(int fila){
-    return this.GP.MandarProfesor2(fila);
+        this.nombresColumnas.add("CX");
     }
 
+    @Override
+    public Object getValueAt(int fila, int columna) {
+       Alumno UnAlumno = this.ObtenerAlumno(fila);
+        
+        switch (columna) {
+           
+            case 0: return UnAlumno.getNombre();
+            case 1: return UnAlumno.getApellido();
+            case 2: return UnAlumno.getDni();
+            case 3: return UnAlumno.getCx();
+            default: return UnAlumno.getNombre();
+        
+        }
+    }
+    
+    
+    public Alumno ObtenerAlumno(int fila){
+    return this.GP.MandarAlumno2(fila);
+    }
+    
     @Override
     public String getColumnName(int columna) {
         return this.nombresColumnas.get(columna);
     }
-
+    
     @Override
     public int getRowCount() {
-    return this.GP.verUltimoProfesor();
-            
+         return this.GP.verUltimoAlumno();
     }
 
     @Override
@@ -63,5 +62,5 @@ public class ModeloTablaProfesor extends AbstractTableModel{
     }
 
     
-}
     
+}

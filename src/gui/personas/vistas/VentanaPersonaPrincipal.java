@@ -6,7 +6,10 @@
 package gui.personas.vistas;
 
 import gui.personas.controladores.ControladorPersonas;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,7 +36,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     }
 
     public JTable getProfesores() {
-        return Profesores;
+        return Profesor;
     }
 
    
@@ -56,7 +59,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Profesores = new javax.swing.JTable();
+        Profesor = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,7 +82,6 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         });
 
         jButton1.setText("Nuevo Profesor");
-        jButton1.setActionCommand("Nuevo Profesor");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -129,7 +131,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        Profesores.setModel(new javax.swing.table.DefaultTableModel(
+        Profesor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -140,7 +142,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
                 "Apellido", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(Profesores);
+        jScrollPane2.setViewportView(Profesor);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Profesores");
@@ -305,7 +307,39 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    this.CP.btnBorrarProfesorClic(evt);
+
+       DefaultTableModel dtm = (DefaultTableModel) Profesor.getModel(); //TableProducto es el nombre de mi tabla ;) 
+        dtm.removeRow(Profesor.getSelectedRow()); 
+        
+        
+        int fsel=1, resp;
+        DefaultTableModel m;         
+        
+            
+//        try{
+//        fsel=TablaDeProfesores.getSelectedRow();
+//        if(fsel==-1){
+//            
+//            JOptionPane.showMessageDialog(null,"Debe seleccionar la fila a eliminar","Advertencia",JOptionPane.WARNING_MESSAGE );
+//        }else{
+//            resp=JOptionPane.showConfirmDialog(null,"¿Esta segudo que desea eliminar esta fila?","Eliminar",JOptionPane.YES_NO_OPTION);
+//            if(resp==JOptionPane.YES_OPTION){  
+//                    
+//            m= (DefaultTableModel)TablaDeProfesores.getModel();
+//            m.removeRow(fsel);
+//            
+//        }
+//        }
+//        
+//        }catch(HeadlessException | NumberFormatException e){
+//         JOptionPane.showMessageDialog(null,"No se elimino la fila","Error",JOptionPane.ERROR_MESSAGE );
+//        
+//        }
+         
+        
+        
+        this.CP.btnBorrarProfesorClic(evt);
+    
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -316,7 +350,7 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Alumnos;
-    private javax.swing.JTable Profesores;
+    private javax.swing.JTable Profesor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
