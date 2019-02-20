@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 
 
@@ -37,13 +38,14 @@ public class GestorPersonas implements IGestorPersonas {
 ArrayList <Profesor> Profesoress= new ArrayList <>();
 ArrayList <Alumno> Alumnoss= new ArrayList<>();
 
-public void CargarProfesor(){
+public List<Profesor> CargarProfesor(){
     for(Persona p: personas){
         if(p instanceof Profesor ){
             if(!Profesoress.contains(p)){
         Profesoress.add(((Profesor)p));}
         }
      }
+    return Profesoress;
 }
 
 public void CargarAlumno(){
@@ -67,9 +69,9 @@ public void CargarAlumno(){
     return Profesoress.size();
     }
 public Profesor MandarProfesor2(int i){
-//   this.CargarProfesor();
+   this.CargarProfesor();
 
-   return this.Profesoress.get(i);}
+   return this.CargarProfesor().get(i);}
 
 public Alumno MandarAlumno2(int i){
 //   this.CargarAlumno();
@@ -144,6 +146,7 @@ public Alumno MandarAlumno2(int i){
                       }
         Profesor profesor=new Profesor(apellidos,nombres,dni,cargo);
                             if(!personas.contains(profesor)){
+                                System.out.println(profesor.getApellido());
                                 personas.add(profesor);
                                 this.escribirArchivo();
                                 return mensajeCorrecto;
@@ -249,19 +252,21 @@ public Alumno MandarAlumno2(int i){
     public void mostrarAlumnos() {
           for(Persona e: personas){
               if(e instanceof Alumno)
-                e.mostrar();
+                //e.mostrar();
+              System.out.println(e.getApellido());
         }  
     }
 
  
     public void mostrarProfesores() {
-//        for(Persona e: personas){
-//              if(e instanceof Profesor)
+        for(Persona e: personas){
+              if(e instanceof Profesor)
+                //e.mostrar();
+              System.out.println(e.getApellido());
+       } 
+//        for(Profesor e: profesores){
 //                e.mostrar();
-//       } 
-        for(Profesor e: profesores){
-                e.mostrar();
-       }
+//       }
     }
  public void mostrarProfesores1() {
      for(Profesor e: this.Profesoress){
@@ -379,14 +384,13 @@ ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
                      String cadena1=String.valueOf(cadenadivicion[0]);
                      String[] vector= cadena1.split(Character.toString(DIVISION));
                       String nombre = vector[0];              
-
                       String apellido= vector[1];
                       String DNI=vector[2];
                       String cargoCX=vector[3];
-                      if(cargoCX.indexOf(PROFE)>-1){
-                          cargoCX.substring(1);
-                      Cargo cargo=Cargo.valueOf(cargoCX.substring(1));
-                    Profesor unaProfesor = new Profesor(apellido,nombre,Integer.valueOf(DNI),cargo);
+                     if(cargoCX.indexOf(PROFE)>-1){
+                      //    cargoCX.substring(1);
+                  //    Cargo cargo=Cargo.valueOf(cargoCX.substring(1));
+                    Profesor unaProfesor = new Profesor(apellido,nombre,Integer.valueOf(DNI),Cargo.TITULAR);
                         this.personas.add(unaProfesor);
                                                  }
                       else{

@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Gianpaolo
  */
 public class ModeloTablaAlumno extends AbstractTableModel{
-    private List<String> nombresColumnas = new ArrayList<>(); 
+     private List<String> nombresColumnas = new ArrayList<>(); 
      private GestorPersonas GP = GestorPersonas.inicializar();
 
     public ModeloTablaAlumno() {
@@ -36,7 +36,7 @@ public class ModeloTablaAlumno extends AbstractTableModel{
             case 1: return UnAlumno.getApellido();
             case 2: return UnAlumno.getDni();
             case 3: return UnAlumno.getCx();
-            default: return UnAlumno.getNombre();
+            default: return null;
         
         }
     }

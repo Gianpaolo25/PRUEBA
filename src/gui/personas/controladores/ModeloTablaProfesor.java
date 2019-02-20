@@ -36,7 +36,7 @@ public class ModeloTablaProfesor extends AbstractTableModel{
             case 1: return UnProfesor.getApellido();
             case 2: return UnProfesor.getDni();
             case 3: return UnProfesor.getCargos();
-            default: return UnProfesor.getNombre();
+            default: return null;
             
         }
     }

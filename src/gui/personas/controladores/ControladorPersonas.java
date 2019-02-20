@@ -64,6 +64,11 @@ public class ControladorPersonas implements IControladorPersonas {
         GP.mostrarProfesores();  //mas adelante se lo borra        
     }
           
+    
+    
+    
+    
+    
     @Override
     public void btnNuevoAlumnoClic(ActionEvent evt) {
     ControladorAMAlumno CAMA=ControladorAMAlumno.Inicializar(this.VPP);
@@ -143,36 +148,38 @@ public class ControladorPersonas implements IControladorPersonas {
     
     
     
+    
+    
     private void configurarTablaProfesor() {
     JTable tablaProfesor= this.VPP.getProfesores();
     tablaProfesor.setModel(new ModeloTablaProfesor());
     tablaProfesor.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    ListSelectionListener lsl=(e)->{
-    if(!e.getValueIsAdjusting()){
-    int fila=tablaProfesor.getSelectedRow();
-    ModeloTablaProfesor mtp= (ModeloTablaProfesor)tablaProfesor.getModel();
-    Persona UnProfesor = mtp.ObtenerProfesor(fila);
-    //this.LUIS=((Profesor)UnProfesor);
-    
-    }
-    };
-    tablaProfesor.getSelectionModel().addListSelectionListener(lsl);
+//    ListSelectionListener lsl=(e)->{
+//    if(!e.getValueIsAdjusting()){
+//    int fila=tablaProfesor.getSelectedRow();
+//    ModeloTablaProfesor mtp= (ModeloTablaProfesor)tablaProfesor.getModel();
+//    Persona UnProfesor = mtp.ObtenerProfesor(fila);
+//    //this.LUIS=((Profesor)UnProfesor);
+//    
+//    }
+//    };
+//    tablaProfesor.getSelectionModel().addListSelectionListener(lsl);
     }
     
     private void configurarTablaAlumno(){
     JTable tablaAlumno= this.VPP.getAlumnos();
     tablaAlumno.setModel(new ModeloTablaAlumno());
     tablaAlumno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    ListSelectionListener lsl=(e)->{
-    if(!e.getValueIsAdjusting()){
-    int fila=tablaAlumno.getSelectedRow();
-    ModeloTablaAlumno mta= (ModeloTablaAlumno)tablaAlumno.getModel();
-    Persona UnAlumno = mta.ObtenerAlumno(fila);
-    //this.LUIS=((Alumno)UnAlumno);
-    
-    }
-    };
-    tablaAlumno.getSelectionModel().addListSelectionListener(lsl);
+//    ListSelectionListener lsl=(e)->{
+//    if(!e.getValueIsAdjusting()){
+//    int fila=tablaAlumno.getSelectedRow();
+//    ModeloTablaAlumno mta= (ModeloTablaAlumno)tablaAlumno.getModel();
+//    Persona UnAlumno = mta.ObtenerAlumno(fila);
+//    //this.LUIS=((Alumno)UnAlumno);
+//    
+//    }
+//    };
+//    tablaAlumno.getSelectionModel().addListSelectionListener(lsl);
     }
         
 }
