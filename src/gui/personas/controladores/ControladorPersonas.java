@@ -1,5 +1,6 @@
 
 
+
 package gui.personas.controladores;
 import gui.interfaces.IControladorPersonas;
 import gui.personas.modelos.Alumno;
@@ -38,6 +39,7 @@ public class ControladorPersonas implements IControladorPersonas {
     }
     return CP;
     }
+    
     
     
     
