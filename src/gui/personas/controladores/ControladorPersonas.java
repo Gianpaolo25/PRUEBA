@@ -4,7 +4,7 @@ package gui.personas.controladores;
 import gui.interfaces.IControladorPersonas;
 import gui.personas.modelos.Alumno;
 import gui.personas.modelos.GestorPersonas;
-import gui.personas.modelos.Persona;
+import static gui.personas.modelos.GestorPersonas.CONTADOR;
 import gui.personas.modelos.Profesor;
 import gui.personas.vistas.VentanaPersonaPrincipal;
 import gui.principal.vistas.VentanaPrincipal;
@@ -13,7 +13,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,9 +39,18 @@ public class ControladorPersonas implements IControladorPersonas {
     return CP;
     }
     
+    
+    
+    
+    public boolean CONTADOR=GP.mandarContador();
     private VentanaPersonaPrincipal VPP;           //para JFrame
     private ControladorPersonas() {
+        if(CONTADOR==true){CONTADOR=false;
         
+        }
+        else{
+        CONTADOR=true;}
+        System.out.println(CONTADOR);
         VPP=new VentanaPersonaPrincipal(this);
         VPP.setLocationRelativeTo(null);
         this.configurarTablaProfesor();
@@ -52,7 +60,8 @@ public class ControladorPersonas implements IControladorPersonas {
         VPP.setVisible(true);
         
     }
-      
+    
+    public boolean MANDARCONTADOR(){return CONTADOR;}  
     public ControladorPersonas(VentanaPrincipal VP) {    
         this();
     }  
@@ -67,10 +76,7 @@ public class ControladorPersonas implements IControladorPersonas {
     
     
     
-    
-    
-    
-    
+   
     
     
     @Override
@@ -82,12 +88,17 @@ public class ControladorPersonas implements IControladorPersonas {
 
     @Override
     public void btnModificarProfesorClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    ControladorModificarProfesor CMP=ControladorModificarProfesor.Inicializar(VPP);
+    CMP.Anular();
+    GP.mostrarProfesores();
     }
 
+    
     @Override
     public void btnModificarAlumnoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    ControladorModificarAlumno CMA=ControladorModificarAlumno.Inicializar(VPP);
+    CMA.Anular();
+    GP.mostrarAlumnos();
     }
 
     @Override
@@ -118,6 +129,8 @@ public class ControladorPersonas implements IControladorPersonas {
         CPB.Anular();
     }
     
+    
+    
      @Override
     public void btnBuscarAlumnoClic(ActionEvent evt) {
          ControladorAlumnoBuscar CAB=ControladorAlumnoBuscar.Inicializar(VPP);
@@ -128,6 +141,7 @@ public class ControladorPersonas implements IControladorPersonas {
      System.out.println(a);}
         CAB.Anular();
     }
+    
     
     
      @Override
@@ -149,6 +163,20 @@ public class ControladorPersonas implements IControladorPersonas {
     public void txtApellidosAlumnoPresionarTecla(KeyEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

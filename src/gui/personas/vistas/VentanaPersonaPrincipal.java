@@ -205,8 +205,18 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         });
 
         jButton4.setText("Modificar Alumno");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Borrar Alumno");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Buscar Alumno");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -341,6 +351,14 @@ public class VentanaPersonaPrincipal extends javax.swing.JFrame {
         this.CP.btnBorrarProfesorClic(evt);
     
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+this.CP.btnModificarAlumnoClic(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

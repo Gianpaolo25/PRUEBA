@@ -55,6 +55,7 @@ GestorPersonas GP= GestorPersonas.inicializar();
       
 private static ControladorAMAlumno CAMA;
 private VentanaAlumnoAM VAAM;
+
 public void Anular(){
 CAMA=null;
 }

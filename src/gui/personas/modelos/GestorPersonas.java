@@ -6,6 +6,7 @@
 package gui.personas.modelos;
 
 import gui.interfaces.IGestorPersonas;
+import gui.personas.controladores.ControladorPersonas;
 //import gui.interfaces.IGestorTrabajos;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -42,7 +43,8 @@ public List<Profesor> CargarProfesor(){
     for(Persona p: personas){
         if(p instanceof Profesor ){
             if(!Profesoress.contains(p)){
-        Profesoress.add(((Profesor)p));}
+        Profesoress.add(((Profesor)p));
+           }
         }
      }
     return Profesoress;
@@ -74,7 +76,7 @@ public Profesor MandarProfesor2(int i){
    return this.CargarProfesor().get(i);}
 
 public Alumno MandarAlumno2(int i){
-//   this.CargarAlumno();
+   this.CargarAlumno();
 
    return this.Alumnoss.get(i);}
 
@@ -387,7 +389,7 @@ ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
                       String apellido= vector[1];
                       String DNI=vector[2];
                       String cargoCX=vector[3];
-                      
+                      System.out.println(cargoCX);
                      if(cargoCX.indexOf(PROFE)>-1){
                           cargoCX.substring(1);
                       Cargo cargo=Cargo.valueOf(cargoCX.substring(1));
@@ -401,7 +403,9 @@ ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
                      System.out.println(UnAlumno.getApellido());
                       this.personas.add(UnAlumno);
                           }
+                     
                 }
+                
             }
             catch (IOException ioe) {
                 System.out.println("Error al leer del archivo " + ARCHIVO);
@@ -419,19 +423,41 @@ ArrayList <Trabajo> UNTRABAJO =new ArrayList<>();
         }
     }
  
+ public static boolean CONTADOR;
+ public boolean mandarContador (){return CONTADOR;}
    private void escribirArchivo() {
+       ControladorPersonas CONTROCP=ControladorPersonas.Inicializar();
+       CONTROCP.MANDARCONTADOR();
         File file = new File(ARCHIVO);
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {     
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+           
             for(Persona UnaPersona : this.personas) {
                 String cadena;
-                if(UnaPersona instanceof Profesor){
-                 cadena = UnaPersona.getNombre() + DIVISION + UnaPersona.getApellido() + DIVISION + UnaPersona.getDni() + DIVISION + PROFE +((Profesor) UnaPersona).getCargos().name()+SEPARADOR;
-                                                  }
+              
+                
+               System.out.println(CONTADOR);
+               if(CONTADOR==true){
+                   
+                   if(UnaPersona instanceof Profesor){
+            cadena =UnaPersona.getNombre() + DIVISION + UnaPersona.getApellido() + DIVISION + UnaPersona.getDni() + DIVISION + PROFE +((Profesor) UnaPersona).getCargos().name()+SEPARADOR;       
+                         
+                   }
                 else{
                 cadena = UnaPersona.getNombre()+ DIVISION+ UnaPersona.getApellido()+DIVISION+UnaPersona.getDni()+DIVISION+((Alumno)UnaPersona).getCx()+SEPARADOR;
                     }
+                   }
+               else{
+               if(UnaPersona instanceof Profesor){
+               cadena = UnaPersona.getApellido() + DIVISION + UnaPersona.getNombre() + DIVISION + UnaPersona.getDni() + DIVISION +PROFE +((Profesor) UnaPersona).getCargos().name()+SEPARADOR;
+               }
+               else{
+                cadena = UnaPersona.getNombre()+ DIVISION+ UnaPersona.getApellido()+DIVISION+UnaPersona.getDni()+DIVISION+((Alumno)UnaPersona).getCx()+SEPARADOR;
+                    }
+               }
+                                       
                 bw.write(cadena);
                 bw.newLine();
+
             }
         } 
         catch (IOException ioe) {

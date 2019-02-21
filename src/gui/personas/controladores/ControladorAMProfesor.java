@@ -53,6 +53,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor{
 
 private static ControladorAMProfesor Crear; 
 private VentanaProfesorAM VPAM;
+
 public void Anular(){
 Crear=null;
 }
